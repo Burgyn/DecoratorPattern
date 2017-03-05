@@ -1,0 +1,32 @@
+﻿<Window x:Class="DecoratorPattern.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DecoratorPattern"
+        xmlns:model="clr-namespace:DecoratorPattern.Model"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type model:Person }">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding Path=FirstName}" />
+                <TextBlock Text="{Binding Path=LastName}" Grid.Column="1" />
+                <TextBlock Text="{Binding Path=Email}" Grid.Row="1" Grid.ColumnSpan="2"
+                           Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"  />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <ListView Margin="10" ItemsSource="{Binding Path=ItemsSource}" />
+    </Grid>
+</Window>
